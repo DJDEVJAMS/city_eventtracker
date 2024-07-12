@@ -3,6 +3,7 @@ const numOfDays = 10;
 const container = $('#container');
 const inputCity = $('#city-input');
 const submitBtn = $('#submit-btn');
+const eventDiv = $('#event-div');
 
 
 
@@ -69,6 +70,22 @@ console.log(url);
     })
     .then(function (data) {
         console.log(data);
+        console.log(data.results[4].photos[0].html_attributions[0]);
+        for (let i = 0; i < data.length; i++) {
+            // Add a <div> to hold the info
+            const card = $('<div>').addClass('card border flex flex-row');
+            // Add a <div> to hold an image
+            const imgDiv = $('<div>').addClass('border basis-1/5');
+            // Add a <div to hold info
+            const contentDiv = $('<div>').addClass('border basis-4/5');
+            // Add the image for the imgDiv
+            // Add elements for the content div
+            
+
+            // Append the elements to the page
+            card.append(imgDiv, contentDiv);
+            eventDiv.append(card);
+        }
     })
     .catch(function (error){
         console.log(error);
