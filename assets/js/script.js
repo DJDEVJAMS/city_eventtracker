@@ -47,19 +47,32 @@ function getWeather(){
             forcastCard.append(forcastDate, weatherIcon, tempDiv, windDiv, humidDiv);
             container.append(forcastCard);
         };
+        // pass coord to other function
+        const lat = weather.city.coord.lat;
+        const lon = weather.city.coord.lon;
+        getEvents(lat, lon);
     })
     .catch(function (error){
         console.log(error);
     })
 }
 
-function getEvents(){
+function getEvents(eLat,eLon){
+    console.log(eLat);
+    console.log(eLon);
     const urlKey = `AIzaSyAnTBaaKIz-lNvU-Ppy1JejTOO4AIdVyQM`;
-    // const longitude = ;
-    // const latitude = ;
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${longitude}%2C${latitude}&radius=1500&type=restaurant&key=${urlKey}`;
-
-    
+    const url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${eLat}%2C${eLon}&radius=1500&type=restaurant&key=${urlKey}`;
+console.log(url);
+    fetch(url)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    })
+    .catch(function (error){
+        console.log(error);
+    })
 }
 
 inputCity.on("keypress", function(event) {
