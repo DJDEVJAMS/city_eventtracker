@@ -4,6 +4,11 @@ const container = $('#container');
 const inputCity = $('#city-input');
 const submitBtn = $('#submit-btn');
 
+
+
+
+
+
 function getWeather(){
     let cityName = inputCity.val().trim();
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
@@ -48,4 +53,14 @@ function getWeather(){
     })
 }
 
+
+inputCity.on("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.querySelector('button').click();
+    }
+  });
 submitBtn.on('click', getWeather);
+
+
+
