@@ -53,6 +53,14 @@ function getWeather(){
     })
 }
 
+function getEvents(){
+    const urlKey = `AIzaSyAnTBaaKIz-lNvU-Ppy1JejTOO4AIdVyQM`;
+    // const longitude = ;
+    // const latitude = ;
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${longitude}%2C${latitude}&radius=1500&type=restaurant&key=${urlKey}`;
+
+    
+}
 
 inputCity.on("keypress", function(event) {
     if (event.key === "Enter") {
