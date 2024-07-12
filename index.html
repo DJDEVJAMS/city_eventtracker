@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>City Event Tracker</title>
 </head>
+
 <body>
-    <input type="text" id="city-input" class="form-control" />
-    <button id="submit-btn" type="submit" class="btn btn-success">Search</button>
-    <div id="container"></div>
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <h1 class="flex justify-center">City Event Tracker</h1>
+    <section class="flex justify-center">
+        <input type="text" id="city-input" class="rounded shadow border p-1" />
+        <button id="submit-btn" type="submit" class="btn p-1 rounded bg-green-600 text-white">Search</button>
+        <div id="container"></div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
