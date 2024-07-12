@@ -17,7 +17,7 @@ function getWeather(){
         for (let i = 0; i < 5; i++) {
             // Create a div to hold the elements of the card
             const forcastCard = $('<div>');
-            forcastCard.addClass('card');
+            forcastCard.addClass('card border basis-1/5');
             // Added a date for the card
             const forcastDate = $('<p>');
             forcastDate.text(dayjs().add(i + 1, 'day').format('M/D/YYYY'));
