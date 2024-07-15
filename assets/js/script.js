@@ -69,23 +69,34 @@ console.log(url);
         return response.json();
     })
     .then(function (data) {
+        eventDiv.empty(); // Need this to empty the div when another city is inputted
         console.log(data);
         for (let i = 0; i < 5; i++) {
             // Add a <div> to hold the info
-            const card = $('<div>').addClass('card border flex flex-row');
+            const evetCard = $('<div>').addClass('card border flex flex-row');
             // Add a <div> to hold an image
             const imgDiv = $('<div>').addClass('border basis-1/5');
             // Add a <div to hold info
             const contentDiv = $('<div>').addClass('border basis-4/5');
             // Add the image for the imgDiv
             // Add elements for the content div
-            const eventName = $('<h2>').text(data.results[i].name);
-            console.log(eventName);
+            const eventName = $('<h2>').text(`Name: ${data.results[i].name}`);
+
+            function isItOpen(){
+                if (data.results[i].opening_hours.open_now = true) {
+                    return "Yes";
+                } else {
+                    return "No";
+                }
+            }
+
+            const isOpen = $('<p>').text(`Open: ${isItOpen()}`);
+            const address = $('<p>').text(`Address: ${data.results[i].vicinity}`);
 
             // Append the elements to the page
-            contentDiv.append(eventName);
-            card.append(imgDiv, contentDiv);
-            eventDiv.append(card);
+            contentDiv.append(eventName, isOpen, address);
+            evetCard.append(imgDiv, contentDiv);
+            eventDiv.append(evetCard);
         }
     })
     .catch(function (error){
