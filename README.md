@@ -4,6 +4,11 @@ A website built provide events in a city and the weather.
 ## Description
 A site to find local weather and events in a given area. 
 
+## Collaborators
+jacobmrobison23 https://github.com/jacobmrobison23
+
+Drew-Andersen https://github.com/Drew-Andersen
+
 ## How to Use
 1. Open `https://djdevjams.github.io/city_eventtracker/` in your browser.
 2. Enter a city and or state in the search bar.
