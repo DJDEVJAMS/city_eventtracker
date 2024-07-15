@@ -70,8 +70,7 @@ console.log(url);
     })
     .then(function (data) {
         console.log(data);
-        console.log(data.results[4].photos[0].html_attributions[0]);
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < 5; i++) {
             // Add a <div> to hold the info
             const card = $('<div>').addClass('card border flex flex-row');
             // Add a <div> to hold an image
@@ -80,9 +79,11 @@ console.log(url);
             const contentDiv = $('<div>').addClass('border basis-4/5');
             // Add the image for the imgDiv
             // Add elements for the content div
-            
+            const eventName = $('<h2>').text(data.results[i].name);
+            console.log(eventName);
 
             // Append the elements to the page
+            contentDiv.append(eventName);
             card.append(imgDiv, contentDiv);
             eventDiv.append(card);
         }
