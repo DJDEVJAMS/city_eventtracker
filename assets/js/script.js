@@ -78,11 +78,9 @@ console.log(url);
         console.log(data);
         for (let i = 0; i < 5; i++) {
             // Add a <div> to hold the info
-            const evetCard = $('<div>').addClass('card border flex flex-row');
-            // Add a <div> to hold an image
-            const imgDiv = $('<div>').addClass('border basis-1/5');
+            const evetCard = $('<div>').addClass('card border');
             // Add a <div to hold info
-            const contentDiv = $('<div>').addClass('border basis-4/5');
+            const contentDiv = $('<div>').addClass('border');
             // Add the image for the imgDiv
             // Add elements for the content div
             const eventName = $('<h2>').text(`Name: ${data.results[i].name}`);
@@ -102,7 +100,7 @@ console.log(url);
 
             // Append the elements to the page
             contentDiv.append(eventName, isOpen, address, ratings);
-            evetCard.append(imgDiv, contentDiv);
+            evetCard.append(contentDiv);
             eventDiv.append(evetCard);
         }
     })
