@@ -80,6 +80,7 @@ console.log(url);
             // Add elements for the content div
             const eventName = $('<h2>').text(`Name: ${data.results[i].name}`);
 
+            // If statement to see if its open or not
             function isItOpen(){
                 if (data.results[i].opening_hours.open_now = true) {
                     return "Yes";
@@ -90,9 +91,10 @@ console.log(url);
 
             const isOpen = $('<p>').text(`Open: ${isItOpen()}`);
             const address = $('<p>').text(`Address: ${data.results[i].vicinity}`);
+            const ratings = $('<p>').text(`Rating: ${data.results[i].rating}`)
 
             // Append the elements to the page
-            contentDiv.append(eventName, isOpen, address);
+            contentDiv.append(eventName, isOpen, address, ratings);
             evetCard.append(imgDiv, contentDiv);
             eventDiv.append(evetCard);
         }
