@@ -4,8 +4,13 @@ const container = $('#container');
 const inputCity = $('#city-input');
 const submitBtn = $('#submit-btn');
 const eventDiv = $('#event-div');
+const cityDispaly = $('#city-display');
 
-
+// Function to display the inputted city name
+function displayName () {
+    const cityName = $('<h1>').text(inputCity.val().trim()).addClass('text-2xl font-bold text-white flex justify-center mb-2');
+    cityDispaly.append(cityName);
+}
 
 
 function getWeather(){
@@ -18,6 +23,8 @@ function getWeather(){
     })
     .then(function (weather){
     container.empty();
+    cityDispaly.empty();
+    displayName();
         for (let i = 0; i < 5; i++) {
             // Create a div to hold the elements of the card
             const forcastCard = $('<div>');
