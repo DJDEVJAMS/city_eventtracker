@@ -5,13 +5,29 @@ const inputCity = $('#city-input');
 const submitBtn = $('#submit-btn');
 const eventDiv = $('#event-div');
 const cityDispaly = $('#city-display');
+const historyDiv = $('#history-div');
+
+function getCity() {
+    const storedCity = JSON.parse(localStorage.getItem('city'));
+    if (storedCity !== null) {
+        return storedCity;
+    } else {
+        const emptyCity = [];
+        return emptyCity;
+    }
+}
+
+function saveCity(city) {
+    const tempCities = getCity();
+    tempCities.push(city);
+    const saveCity = localStorage.setItem('city' ,JSON.stringify(tempCities));
+}
 
 // Function to display the inputted city name
 function displayName () {
     const cityName = $('<h1>').text(inputCity.val().trim()).addClass('text-2xl font-bold text-white flex justify-center mb-2');
     cityDispaly.append(cityName);
 }
-
 
 function getWeather(){
     let cityName = inputCity.val().trim();
@@ -22,9 +38,11 @@ function getWeather(){
         return response.json();
     })
     .then(function (weather){
-    container.empty();
-    cityDispaly.empty();
-    displayName();
+        container.empty();
+        cityDispaly.empty();
+        saveCity(cityName);
+        displayHistoryBtns();
+        displayName();
         for (let i = 0; i < 5; i++) {
             // Create a div to hold the elements of the card
             const forcastCard = $('<div>');
@@ -109,6 +127,28 @@ console.log(url);
     })
 }
 
+function displayHistoryBtns () {
+    historyDiv.empty();
+    const tempCities = getCity();
+    tempCities.forEach((city, i) => {
+        const cityCard = $('<button>').addClass('histroy-btn text-white m-2 p-1.5 border rounded').attr('data-id', i);
+        cityCard.text(city);//.addClass('text-center')
+        historyDiv.append(cityCard);
+    })
+}
+
+// Need to fix the button click
+function handleHistorySearch() {
+    let cityID = $(this).attr('data-id');
+    let savedCities = getCity();
+    container.empty();
+    eventDiv.empty();
+    getWeather(savedCities[cityID]);
+    getEvents(savedCities[cityID]);
+}
+
+
+
 inputCity.on("keypress", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -116,6 +156,7 @@ inputCity.on("keypress", function(event) {
     }
   });
 submitBtn.on('click', getWeather);
+historyDiv.on('click', '.histroy-btn', handleHistorySearch);
 
-
+window.onload = displayHistoryBtns;
 
