@@ -8,8 +8,6 @@ const eventDiv = $('#event-div');
 
 
 
-
-
 function getWeather(){
     let cityName = inputCity.val().trim();
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
