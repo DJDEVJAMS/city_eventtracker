@@ -69,7 +69,7 @@ console.log(url);
         return response.json();
     })
     .then(function (data) {
-        eventDiv.empty(); // Need this to empty the div when another city is inputted
+        eventDiv.empty(); // Need this here
         console.log(data);
         for (let i = 0; i < 5; i++) {
             // Add a <div> to hold the info
