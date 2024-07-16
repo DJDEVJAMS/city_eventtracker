@@ -168,7 +168,7 @@ function handleHistorySearch() {
 inputCity.on("keypress", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      document.querySelector('button').click();
+      document.getElementById('submit-btn').click();
     }
   });
 submitBtn.on('click', getWeather);
