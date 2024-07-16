@@ -2,7 +2,7 @@
 A website built provide events in a city and the weather.
 
 ## Description
-A site to find local weather and events in a given area. 
+City EventTracker is a web application designed to help users explore local events and the current weather in a city. By combining data from Google Places and Open Weather API, users can easily discover what's happening around them and plan their activities accordingly. The user-friendly interface, built with HTML, CSS, Tailwind, and JavaScript, ensures a smooth and engaging experience.
 
 ## Collaborators
 jacobmrobison23 https://github.com/jacobmrobison23
@@ -18,8 +18,13 @@ Drew-Andersen https://github.com/Drew-Andersen
 ## Technologies Used
 - HTML
 - CSS
+- Tailwind
 - JavaScript
 
+## API's used
+
+Google Places 
+Open Weather API
 
 
 ## Mock-Up
