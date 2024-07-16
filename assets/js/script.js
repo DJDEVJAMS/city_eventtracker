@@ -43,6 +43,7 @@ function getWeather(){
         saveCity(cityName);
         displayHistoryBtns();
         displayName();
+        let dayOffSet = 0;
         for (let i = 0; i < 5; i++) {
             // Create a div to hold the elements of the card
             const forcastCard = $('<div>');
@@ -53,20 +54,22 @@ function getWeather(){
             // Creating a weather icon
             const weatherIcon = $('<img>');
             console.log(weather); // Undefined
-            const icon = weather.list[i].weather[0].icon;
+            const icon = weather.list[dayOffSet].weather[0].icon;
             weatherIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`);
             // Create temp
-            const temp = weather.list[i].main.temp;
+            const temp = weather.list[dayOffSet].main.temp;
             const tempDiv = $('<p>');
             tempDiv.text('Temp: ' + temp + '°F')
             // Create wind
-            const wind = weather.list[i].wind.speed;
+            const wind = weather.list[dayOffSet].wind.speed;
             const windDiv = $('<p>');
             windDiv.text('Wind: ' + wind + 'mph');
             // Create humidity
-            const humidity = weather.list[i].main.humidity;
+            const humidity = weather.list[dayOffSet].main.humidity;
             const humidDiv = $('<p>');
             humidDiv.text('Humidity: ' + humidity + '%');
+            // Sets it per day instead of every 3 hours
+            dayOffSet = dayOffSet +8;
             // Append the elements to the screen
             forcastCard.append(forcastDate, weatherIcon, tempDiv, windDiv, humidDiv);
             container.append(forcastCard);
@@ -82,8 +85,6 @@ function getWeather(){
 }
 
 function getEvents(eLat,eLon){
-    console.log(eLat);
-    console.log(eLon);
     const urlKey = `AIzaSyAnTBaaKIz-lNvU-Ppy1JejTOO4AIdVyQM`;
     const url = `https://floating-headland-95050.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${eLat}%2C${eLon}&radius=1500&type=restaurant&key=${urlKey}`;
 console.log(url);
@@ -92,9 +93,9 @@ console.log(url);
         return response.json();
     })
     .then(function (data) {
-        eventDiv.empty(); // Need this here
+        eventDiv.empty(); 
         console.log(data);
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             // Add a <div> to hold the info
             const evetCard = $('<div>').addClass('card border');
             // Add a <div to hold info
@@ -111,13 +112,28 @@ console.log(url);
                     return "No";
                 }
             }
+            // If statement to show the price of the resturant
+            function price(){
+                if (data.results[i].price_level === 1) {
+                    return '$';
+                }else if (data.results[i].price_level === 2){
+                    return '$$';
+                }else if (data.results[i].price_level === 3){
+                    return '$$$';
+                }else if (data.results[i].price_level === 4){
+                    return '$$$$';
+                }else if (data.results[i].price_level === 5){
+                    return '$$$$$';
+                }
+            }
 
             const isOpen = $('<p>').text(`Open: ${isItOpen()}`);
             const address = $('<p>').text(`Address: ${data.results[i].vicinity}`);
-            const ratings = $('<p>').text(`Rating: ${data.results[i].rating}`)
+            const ratings = $('<p>').text(`Rating: ${data.results[i].rating}`);
+            const priceLevel = $('<p>').text(`Price: ${price()}`);
 
             // Append the elements to the page
-            contentDiv.append(eventName, isOpen, address, ratings);
+            contentDiv.append(eventName, isOpen, address, ratings, priceLevel);
             evetCard.append(contentDiv);
             eventDiv.append(evetCard);
         }
@@ -132,7 +148,7 @@ function displayHistoryBtns () {
     const tempCities = getCity();
     tempCities.forEach((city, i) => {
         const cityCard = $('<button>').addClass('histroy-btn text-white m-2 p-1.5 border rounded').attr('data-id', i);
-        cityCard.text(city);//.addClass('text-center')
+        cityCard.text(city);
         historyDiv.append(cityCard);
     })
 }
