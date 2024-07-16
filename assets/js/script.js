@@ -6,6 +6,7 @@ const submitBtn = $('#submit-btn');
 const eventDiv = $('#event-div');
 const cityDispaly = $('#city-display');
 const historyDiv = $('#history-div');
+let url;
 
 function getCity() {
     const storedCity = JSON.parse(localStorage.getItem('city'));
@@ -19,20 +20,30 @@ function getCity() {
 
 function saveCity(city) {
     const tempCities = getCity();
-    tempCities.push(city);
-    const saveCity = localStorage.setItem('city' ,JSON.stringify(tempCities));
+    if(!tempCities.includes(city)){
+        tempCities.push(city);
+    }
+    const saveToStorage = localStorage.setItem('city' ,JSON.stringify(tempCities));
 }
 
 // Function to display the inputted city name
-function displayName () {
-    const cityName = $('<h1>').text(inputCity.val().trim()).addClass('text-2xl font-bold text-white flex justify-center mb-2');
+function displayName (city) {
+    const cityName = $('<h1>').text(city).addClass('text-2xl font-bold text-white flex justify-center mb-2');
+    console.log(city);
     cityDispaly.append(cityName);
 }
 
-function getWeather(){
-    let cityName = inputCity.val().trim();
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
+// Nothing works when city is inputted
 
+function getWeather(city){
+   if(city === undefined){
+    let cityName = inputCity.val();
+    url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
+   } else {
+    url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+   }
+    
+   console.log(url);
     fetch(url)
     .then(function (response){
         return response.json();
@@ -40,9 +51,10 @@ function getWeather(){
     .then(function (weather){
         container.empty();
         cityDispaly.empty();
-        saveCity(cityName);
+        inputCity.val("");
+        saveCity(weather.city.name);
         displayHistoryBtns();
-        displayName();
+        displayName(weather.city.name);
         let dayOffSet = 0;
         for (let i = 0; i < 5; i++) {
             // Create a div to hold the elements of the card
@@ -153,10 +165,15 @@ function displayHistoryBtns () {
     })
 }
 
-// Need to fix the button click
+function handleSearch(event){
+    getWeather();
+}
+
 function handleHistorySearch() {
     let cityID = $(this).attr('data-id');
     let savedCities = getCity();
+    console.log(cityID);
+    console.log(savedCities);
     container.empty();
     eventDiv.empty();
     getWeather(savedCities[cityID]);
@@ -171,7 +188,7 @@ inputCity.on("keypress", function(event) {
       document.getElementById('submit-btn').click();
     }
   });
-submitBtn.on('click', getWeather);
+submitBtn.on('click', handleSearch);
 historyDiv.on('click', '.histroy-btn', handleHistorySearch);
 
 window.onload = displayHistoryBtns;
