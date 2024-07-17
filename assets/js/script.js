@@ -167,6 +167,7 @@ function displayHistoryBtns () {
 
 function handleSearch(event){
     getWeather();
+    getEvents();
 }
 
 function handleHistorySearch() {
