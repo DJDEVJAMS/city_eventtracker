@@ -1,8 +1,8 @@
-# city_eventtracker
-A website built provide events in a city and the weather.
+# City Event tracker 1.0
+Know what’s going on in any city. 
 
 ## Description
-City EventTracker is a web application designed to help users explore local events and the current weather in a city. By combining data from Google Places and Open Weather API, users can easily discover what's happening around them and plan their activities accordingly. The user-friendly interface, built with HTML, CSS, Tailwind, and JavaScript, ensures a smooth and engaging experience.
+City Event Tracker is a web application designed to help users explore local events and the current weather in a city. By combining data from Google Places and Open Weather API, users can easily discover what's happening around them and plan their activities accordingly. The user-friendly interface, built with HTML, CSS, Tailwind, and JavaScript, ensures a smooth and engaging experience.
 
 ## Collaborators
 jacobmrobison23 https://github.com/jacobmrobison23
@@ -11,7 +11,7 @@ Drew-Andersen https://github.com/Drew-Andersen
 
 ## How to Use
 1. Open `https://djdevjams.github.io/city_eventtracker/` in your browser.
-2. Enter a city and or state in the search bar.
+2. Enter a city in the search bar.
 3. Click the search button.
 
 
@@ -34,21 +34,22 @@ Open Weather API
 Static site link - https://djdevjams.github.io/city_eventtracker/
 
 Screenshot of site
-<img src="./assets/images/djdevjams.github.io_city_eventtracker.phg" alt="my blog site screenshot">
+<img src="./assets/images/djdevjams.github.io_city_eventtracker.png" alt="City Event Tracker">
 
 ----
 
 
 ## Testing
 ---
-All links tested redirect to expected section on site. : Verified ✅
-
+All buttons work as expected. : Verified ✅
+>
 All text is ledgible. : Verified ✅
 >
 All images are visable and labed with alt text. : Verified ✅
 
 The following image shows the web application's appearance and functionality:
-![My Portfolio includes a navigation bar, a header image, and cards with text and images at the bottom of the page.]
+
+![The City Event Tracker web application provides a list of events and the weather]!
 
 Functionality:
 
